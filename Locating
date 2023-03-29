@@ -1,0 +1,58 @@
+package learnAutomation;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Xpath {
+
+	public static void main(String[] args) {
+	
+		System.setProperty("webdriver.chrome.driver", "E:\\Testing\\chrome\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("http://orangehrm.qedgetech.com/symfony/web/index.php/auth/login");
+		
+		//locating elements with known attribute
+		 Syntax: //*[@attribute='value']
+		 Example: driver.findElement(By.xpath("//*[@id='txtUsername']")).sendKeys("krish");
+	
+		
+		//locating elements with known element and attributes 
+		 Syntax: //elementName[@attribute='value']
+		 Example: driver.findElement(By.xpath("//input[@id='txtUsername']")).clear();
+		 
+		 
+		/*locating elements with known visible Text (exact match)
+		 Syntax: //elementName[text()='exact Text'] 
+			                Note: text() - is function*/
+		 Example: driver.findElement(By.xpath("//*[text()='OrangeHRM, Inc']"));
+		 
+		 
+		//locating elements when part of the visible text is known (partial match)
+		 Syntax: //elementName[contains(text(),'part of the text')]
+		 Example: driver.findElement(By.xpath("//a[contains(text(),'OrangeHRM')]"));
+		 
+		 
+		//locating elements with multiple attributes
+		 Syntax: //*[@attribute1='value1'][@attribute2='value2']...[@attributeN='valeN']
+		 Example: driver.findElement(By.xpath("//*[@type='submit'][@name='Submit'][@class='button']"));
+	
+	
+		//locating elements when starting visible text is known 
+		 Syntax: //elementName[starts-with(text(),'starting text')]
+		 Example: driver.findElement(By.xpath("//a[starts-with(text(),'OrangeHRM')]"));
+		 
+		 
+		//locating elements with dynamic attribute values
+		 Syntax://elementName[contains(@attributeName,'part of the value')] 
+			    //elementName[starts-with(@attributeName,'fixed prefix of the value')]
+			 		//*[contains(@href,'orange')]
+			 
+		 Example: driver.findElement(By.xpath("//*[starts-with(@href,'http')]"));
+	}
+
+}
